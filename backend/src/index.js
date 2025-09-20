@@ -18,10 +18,11 @@ const __dirname = path.resolve();
 // 1. CORS should come before other middlewares that might send responses
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   })
 );
+
 // 2. Body parsers with limits
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
